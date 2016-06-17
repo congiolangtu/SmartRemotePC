@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.windy.smartremotepc" >
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AddItemActivity"
+            android:label="Add"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+            android:name=".PickImageActivity"
+            android:label="Select one"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+            android:name=".AbsoluteActivity"
+            android:label="Absolute"/>
+        <activity
+            android:name=".WifiConnectActivity"
+            android:label="Server Information"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <activity
+        android:name=".RemotePCActivity"
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar"/>
+        <activity
+            android:name=".EditButtonActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".SlideShowActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"/>
+        <activity
+            android:name=".KeyboardActivity"
+            android:theme="@style/KeyBroadTheme"/>
+        <activity android:name=".BluetoothActivity"
+            android:icon="@drawable/bluetooth"
+            android:label="Bluetooth"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"/>
+        <service android:name=".MyService"/>
+    </application>
+
+
+</manifest>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Width:"
+            android:id="@+id/textView11"
+            android:layout_weight="1.15"
+            android:gravity="bottom"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/editTextWidth"
+            android:layout_weight="1"
+            android:text="1366"
+            android:gravity="bottom" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Height:"
+            android:id="@+id/textView12"
+            android:layout_weight="1.15"
+            android:gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:editable="false"
+            android:autoText="false" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/editTextHeight"
+            android:layout_weight="1"
+            android:text="768"
+            android:gravity="bottom" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Laser"
+        android:id="@+id/btLaser"
+        android:layout_weight="1.15"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="40dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.75">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Back"
+            android:id="@+id/btBackSlide"
+            android:layout_weight="1"
+            android:layout_margin="20dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Next"
+            android:id="@+id/btNextSlide"
+            android:layout_weight="1"
+            android:layout_margin="20dp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <view
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        class="android.support.v4.view.ViewPager"
+        android:id="@+id/view"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffffff">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Automatic"
+            android:id="@+id/btAutomaticC"
+            android:layout_weight="0.75"
+            android:background="@drawable/abc_ab_share_pack_holo_light" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Info"
+            android:id="@+id/btInfoC"
+            android:layout_weight="0.75"
+            android:background="@drawable/abc_ab_share_pack_holo_light" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btimgAddC"
+            android:src="@drawable/add"
+            android:layout_weight="1"
+            android:background="@drawable/abc_ab_share_pack_holo_light" />
+
+    </LinearLayout>
+</LinearLayout>

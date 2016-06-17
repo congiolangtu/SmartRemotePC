@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1.0" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00ffffff"
+        android:layout_weight="1.0" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:layout_width="0.0dp"
+            android:layout_height="fill_parent"
+            android:text="CONNECT"
+            android:background="#ffe8e8e8"
+            android:id="@+id/btConnectMain"
+            android:layout_weight="2"
+            android:layout_margin="1dp"/>
+
+        <Button
+            android:layout_width="0.0dp"
+            android:layout_height="fill_parent"
+            android:text="KeyBoard"
+            android:id="@+id/btSettingMain"
+            android:layout_weight="3"
+            android:background="#ffe8e8e8"
+            android:layout_margin="1dp"/>
+
+        <Button
+            android:layout_width="0.0dp"
+            android:layout_height="fill_parent"
+            android:text="Screen PC"
+            android:id="@+id/btHelpMain"
+            android:layout_weight="2"
+            android:background="#ffe8e8e8"
+            android:layout_margin="1dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bluetooth"
+            android:id="@+id/btBluetoothMain" />
+
+    </LinearLayout>
+
+</LinearLayout>

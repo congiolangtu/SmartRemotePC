@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<list>
+    <item name="Youtube" icon="1"/>
+    <item name="Slide Show" icon="2"/>
+    <item name="Touch Pad" icon="3"/>
+    <item name="Keyboard" icon="4"/>
+    <item name="Num Pad" icon="5"/>
+    <item name="Game Pad" icon="6"/>
+    <item name="Windows Media Player" icon="7"/>
+    <item name="Browser" icon="8"/>
+    <item name="Power" icon="9"/>
+</list>

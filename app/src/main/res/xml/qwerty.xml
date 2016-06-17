@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:horizontalGap="0px"
+    android:verticalGap="0px"
+    android:keyHeight="8%p"
+    >
+    <Row
+        android:keyWidth="8.5%p">
+        <Key android:codes="49" android:keyLabel="1" android:popupCharacters="!" android:keyEdgeFlags="left"/>
+        <Key android:codes="50" android:keyLabel="2"/>
+        <Key android:codes="51" android:keyLabel="3"/>
+        <Key android:codes="52" android:keyLabel="4"/>
+        <Key android:codes="53" android:keyLabel="5"/>
+        <Key android:codes="54" android:keyLabel="6"/>
+        <Key android:codes="55" android:keyLabel="7"/>
+        <Key android:codes="56" android:keyLabel="8"/>
+        <Key android:codes="57" android:keyLabel="9"/>
+        <Key android:codes="48" android:keyLabel="0"/>
+        <Key android:codes="8" android:iconPreview="@drawable/back_space_preview" android:keyIcon="@drawable/back_space"
+            android:keyWidth="15%p" android:isRepeatable="true" android:keyEdgeFlags="right"/>
+    </Row>
+    <Row
+        android:keyWidth="8%p">
+        <Key android:codes="9" android:keyIcon="@drawable/tab" android:iconPreview="@drawable/tab_preview"
+            android:keyWidth="10%p" android:keyEdgeFlags="left"/>
+        <Key android:codes="81" android:keyLabel="Q"/>
+        <Key android:codes="87" android:keyLabel="W"/>
+        <Key android:codes="69" android:keyLabel="E"/>
+        <Key android:codes="82" android:keyLabel="R"/>
+        <Key android:codes="84" android:keyLabel="T"/>
+        <Key android:codes="89" android:keyLabel="Y"/>
+        <Key android:codes="85" android:keyLabel="U"/>
+        <Key android:codes="73" android:keyLabel="I"/>
+        <Key android:codes="79" android:keyLabel="O"/>
+        <Key android:codes="80" android:keyLabel="P" />
+        <Key android:codes="150" android:keyIcon="@drawable/input_text" android:iconPreview="@drawable/input_text_preview"
+            android:keyWidth="10%p" android:keyEdgeFlags="right"/>
+    </Row>
+    <Row
+        android:keyWidth="8%p">
+        <Key android:codes="20" android:keyLabel="Caps" android:isSticky="true"
+            android:keyWidth="12%p" android:keyEdgeFlags="left"/>
+        <Key android:codes="65" android:keyLabel="A"/>
+        <Key android:codes="83" android:keyLabel="S"/>
+        <Key android:codes="68" android:keyLabel="D"/>
+        <Key android:codes="70" android:keyLabel="F"/>
+        <Key android:codes="71" android:keyLabel="G"/>
+        <Key android:codes="72" android:keyLabel="H"/>
+        <Key android:codes="74" android:keyLabel="J"/>
+        <Key android:codes="75" android:keyLabel="K"/>
+        <Key android:codes="76" android:keyLabel="L"/>
+        <Key android:codes="13" android:keyLabel="Enter"
+            android:keyWidth="16%p" android:keyEdgeFlags="right"/>
+    </Row>
+    <Row
+        android:keyWidth="8%p">
+        <Key android:codes="160" android:keyIcon="@drawable/shift" android:iconPreview="@drawable/shift_preview"
+            android:isModifier="true" android:isSticky="true" android:keyWidth="14%p" android:keyEdgeFlags="left"/>
+        <Key android:codes="90" android:keyLabel="Z"/>
+        <Key android:codes="88" android:keyLabel="X"/>
+        <Key android:codes="67" android:keyLabel="C"/>
+        <Key android:codes="86" android:keyLabel="V"/>
+        <Key android:codes="66" android:keyLabel="B"/>
+        <Key android:codes="78" android:keyLabel="N"/>
+        <Key android:codes="77" android:keyLabel="M"/>
+        <Key android:codes="188" android:keyLabel=","/>
+        <Key android:codes="190" android:keyLabel="."/>
+        <Key android:codes="161" android:keyIcon="@drawable/shift" android:iconPreview="@drawable/shift_preview"
+            android:keyWidth="14%p" android:keyEdgeFlags="right"/>
+    </Row>
+    <Row android:rowEdgeFlags="bottom" android:keyWidth="10%p">
+        <Key android:codes="162" android:keyLabel="Ctrl" android:isSticky="true" android:isModifier="true" android:keyEdgeFlags="left"/>
+        <Key android:codes="91" android:keyIcon="@drawable/win" android:isModifier="true" android:isSticky="true" android:iconPreview="@drawable/win_preview"/>
+        <Key android:codes="164" android:keyLabel="Alt" android:isSticky="true" android:isModifier="true"/>
+        <Key android:codes="32" android:keyIcon="@drawable/space" android:iconPreview="@drawable/space_preview"
+            android:isRepeatable="true" android:keyWidth="40%p"/>
+        <Key android:codes="165" android:keyLabel="Alt" android:isSticky="true"/>
+        <Key android:codes="-1" android:keyLabel="Fn"/>
+        <Key android:codes="163" android:keyLabel="Ctrl" android:isSticky="true" android:isModifier="true" android:keyEdgeFlags="right"/>
+    </Row>
+</Keyboard>

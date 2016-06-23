@@ -94,7 +94,7 @@ public class MyButton extends ModeButton implements View.OnTouchListener{
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         paint.setColor(Color.WHITE);
-        RectF rectF= new RectF(2,2,width-2,height-2);
+        RectF rectF= new RectF(3,3,width-3,height-3);
         //draw icon
         if(btDraw!=null){
             if(width>height)rectF.set(2,2,width-2,height-2);
@@ -115,8 +115,11 @@ public class MyButton extends ModeButton implements View.OnTouchListener{
         //draw Background
         //if(!isTouch) canvas.drawBitmap(btDraw,null,rectF,null);
         //else canvas.drawBitmap(btDrawClick,null,rectF,null);Log.i("MyButton","3");
-        paint.setColor(Color.WHITE);
+        paint.setColor(0x99000000);
         paint.setStrokeWidth(5);
+        canvas.drawOval(rectF,paint);
+        paint.setColor(Color.WHITE);
+        paint.setStrokeWidth(3);
         canvas.drawOval(rectF,paint);
         Matrix matrix=new Matrix();matrix.setTranslate(0,0);
         resizeButton.setBounds(new Rect(0,0,(int)width,(int)height));

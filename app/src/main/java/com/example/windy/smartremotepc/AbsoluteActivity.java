@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -65,35 +68,13 @@ public class AbsoluteActivity extends Activity implements OnTouchListener {
         }
         rootview = new RelativeLayout(this);
         if (rootview != null) rootview.setOnTouchListener(this);
-//        textView = new TextView(this);
-//        textView.setText("trung");
-//        textView.setBackgroundColor(Color.BLUE);
-//        AbsoluteLayout.LayoutParams params = new AbsoluteLayout.LayoutParams(100, 200, 100, 200);
-//        this.addContentView(textView, params);
-//        textView.setOnTouchListener(this);
-        RelativeLayout.LayoutParams params;
         rootview.post(new Runnable() {
             @Override
             public void run() {
                 heightPad = rootview.getHeight();
                 widthPad = rootview.getWidth();
-                ModeButton.heightPad=heightPad;
-                ModeButton.widthPad=widthPad;
             }
         });
-        MyButton myButton = new MyButton(this);
-        params=new RelativeLayout.LayoutParams(200,200);params.leftMargin=50;params.topMargin=100;
-        ((RelativeLayout)rootview).addView(myButton);
-        myButton.setHeight(200);myButton.setWidth(200);
-        myButton.setX(50);myButton.setY(100);
-        myButton.setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return ((MyButton)v).touchListen(event);
-            }
-        });
-        myButton.setOnTouchListener(this);
-        listButton.add(myButton);
         this.addContentView(rootview, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
     }
@@ -130,15 +111,21 @@ public class AbsoluteActivity extends Activity implements OnTouchListener {
             Log.i("on Touch", "View " + v.getClass().getSimpleName());
         }
         if(ModeButton.class.isInstance(v)){
-            Log.i("on Touch","modebutton");
+            //sự kiện khi chạm vào button
             return ((ModeButton)v).touchListen(event);
         }
-        if(RelativeLayout.class.isInstance(v)){Log.i("on Touch","add mybutton2");
+        else if(RelativeLayout.class.isInstance(v)){
             if((event.getAction() & MotionEvent.ACTION_MASK)==MotionEvent.ACTION_UP){
-                Log.i("on Touch","add mybutton");
+                //nếu tgian chạm vào layout <200 thì thêm button
+                if(System.currentTimeMillis()-timeTouch>200)return true;
                 Intent intent=new Intent(this,EditButtonActivity.class);
+                intent.putExtra("width",widthPad);intent.putExtra("height",heightPad);
                 startActivityForResult(intent,1);
                 xTouchSave=event.getX();yTouchSave=event.getY();
+            }
+            else if((event.getAction() & MotionEvent.ACTION_MASK)==MotionEvent.ACTION_DOWN){
+                //lấy thời gian kiểm tra có phải chạm nhanh không!
+                timeTouch=System.currentTimeMillis();
             }
             return true;
         }
@@ -150,6 +137,7 @@ public class AbsoluteActivity extends Activity implements OnTouchListener {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==1){
             MyButton myButton = new MyButton(this);
+            listButton.add(myButton);
             ((RelativeLayout)rootview).addView(myButton);
             int height=data.getIntExtra("height",100);
             int width=data.getIntExtra("width",100);
@@ -158,7 +146,6 @@ public class AbsoluteActivity extends Activity implements OnTouchListener {
             myButton.setName(data.getStringExtra("name"));
             myButton.setX(xTouchSave-width/2);myButton.setY(yTouchSave-height/2);
             myButton.setOnTouchListener(this);
-            listButton.add(myButton);
         }
     }
 }

@@ -78,6 +78,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(MainActivity.this,EditButtonActivity.class);
+                intent.putExtra("width",480);intent.putExtra("height",800);
                 startActivity(intent);
             }
         });

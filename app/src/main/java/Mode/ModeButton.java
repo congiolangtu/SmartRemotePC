@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.windy.smartremotepc.AbsoluteActivity;
 import com.example.windy.smartremotepc.EditButtonActivity;
 import com.example.windy.smartremotepc.R;
 
@@ -29,6 +30,7 @@ public abstract class ModeButton extends View implements Serializable {
     protected float x,y,height,width,xPer,yPer,heightPer,widthPer;
     protected String name="BUTTON";
     //context chứa button
+    //protected AbsoluteActivity context=null;
     protected Context context=null;
     //các biến sử dụng cho touch listen
     protected float x1TouchSave, y1TouchSave, x2RawView, y2RawView, x3Last, y3Last,x5,y5;
@@ -46,7 +48,7 @@ public abstract class ModeButton extends View implements Serializable {
     }
 
     protected NinePatchDrawable resizeButton=null;
-    public static int heightPad = 1,widthPad=1;
+    public int heightPad = 480,widthPad=800;
     protected int modeResize;
 
     //các kiểu touch ở chế độ resize
@@ -86,16 +88,36 @@ public abstract class ModeButton extends View implements Serializable {
         return (int)width;
     }
 
+    public float getxPer() {
+        return xPer;
+    }
+
+    public float getyPer() {
+        return yPer;
+    }
+
+    public float getHeightPer() {
+        return heightPer;
+    }
+
+    public float getWidthPer() {
+        return widthPer;
+    }
+
+    public void setPad(int width,int height){
+        widthPad=width;
+        heightPad=height;
+    }
+
     public ModeButton(Context context) {
         super(context);
         this.context=context;
-
         if(resizeButton==null)resizeButton= (NinePatchDrawable)getResources().getDrawable(R.drawable.resize_button);
     }
 
     public boolean touchListen(MotionEvent event){
         //resize
-        if(true){
+        if(mode>4){
             switch (event.getAction() & MotionEvent.ACTION_MASK) {
                 case  MotionEvent.ACTION_DOWN:
                     modeTouch=CLICK;
@@ -114,7 +136,7 @@ public abstract class ModeButton extends View implements Serializable {
                     if(modeResize>1){
                         touchResize(event);
                     }
-                    else if(modeResize==MODE_RESIZE_MOVE){
+                    else if(modeResize==MODE_RESIZE_MOVE&&mode==MODE_VIEW_RESIZE_EDIT){
                         float x,y;
                         x=event.getRawX();y=event.getRawY();
                         setX(x- x1TouchSave + x3Last);
@@ -141,24 +163,43 @@ public abstract class ModeButton extends View implements Serializable {
         this.xPer = x/widthPad;
         this.x=x;
     }
-
+    public void setPerX(float x){
+        xPer=x;
+        this.x=x*widthPad;
+        super.setX(this.x);
+    }
 
     public void setY(float y) {
         super.setY(y);
         this.yPer = y/heightPad;
         this.y=y;
     }
+    public void setPerY(float y){
+        yPer=y;
+        this.y=y*heightPad;
+        super.setY(this.y);
+    }
 
     public void setHeight(int height) {
-       // this.heightPer = height/heightPad;
-        if(this.getLayoutParams()!=null)this.getLayoutParams().height=height;
+        this.heightPer = height/heightPad;
         this.height=height;
+        this.getLayoutParams().height=height;
+    }
+    public void setPerHeight(float height) {
+        this.heightPer = height;
+        this.height=height*heightPad;
+        this.getLayoutParams().height=(int)this.height;
     }
 
     public void setWidth(int width) {
-      //  this.widthPer = width/widthPad;
-        if(this.getLayoutParams()!=null)this.getLayoutParams().width=width;
+        this.widthPer = width/widthPad;
         this.width=width;
+        this.getLayoutParams().width=width;
+    }
+    public void setPerWidth(float width) {
+        this.widthPer = width;
+        this.width=width*widthPad;
+        this.getLayoutParams().width=(int)this.width;
     }
 
     public void setMode(int mode){
@@ -167,7 +208,7 @@ public abstract class ModeButton extends View implements Serializable {
 
     protected boolean checkTouchResize(MotionEvent event){
         float x=event.getX();float y=event.getY();float i=2048,a,b;
-        if(x>width-32&&y>height-32){Log.i("test touch","1");
+        if(x>width-32&&y>height-32){
             modeResize=MODE_RESIZE_BOTTOM_RIGHT;
             x1TouchSave =width-x;
             y1TouchSave =height-y;
@@ -175,30 +216,30 @@ public abstract class ModeButton extends View implements Serializable {
             x2RawView =event.getRawX()-width/2+ x1TouchSave;
             y2RawView =event.getRawY()-height/2+ y1TouchSave;
         }
-        if(x<32&&y>height-32){Log.i("test touch","2");
+        if(x<32&&y>height-32){
             b=height-y;a=(x*x)+(b*b);
             if(a<i) {
-                i=a;Log.i("test touch","2");
+                i=a;
                 modeResize = MODE_RESIZE_BOTTOM_LEFT;
                 x1TouchSave = x; y1TouchSave = b;
                 x2RawView = event.getRawX() + width / 2 - x;
                 y2RawView = event.getRawY() - height / 2 + y1TouchSave;
             }
         }
-        if(x<32&&y<32){Log.i("test touch","3");
+        if(x<32&&y<32){
             a=(x*x)+(y*y);
             if(a<i) {
-                i=a;Log.i("test touch","3");
+                i=a;
                 modeResize = MODE_RESIZE_TOP_LEFT;
                 x1TouchSave = x;y1TouchSave = y;
                 x2RawView = event.getRawX() + width / 2 - x;
                 y2RawView = event.getRawY() + height / 2 - y;
             }
         }
-        if(x>width-32&&y<32){Log.i("test touch","4");
+        if(x>width-32&&y<32){
             b=width-x;a=(b*b)+(y*y);
             if(a<i) {
-                i=a;Log.i("test touch","4");
+                i=a;
                 modeResize = MODE_RESIZE_TOP_RIGHT;
                 x1TouchSave = b;y1TouchSave = y;
                 x2RawView = event.getRawX() - width / 2 + x1TouchSave;
@@ -206,13 +247,13 @@ public abstract class ModeButton extends View implements Serializable {
             }
         }
         if(i==2048) modeResize=0;
-        if(modeResize!=0) {Log.i("test touch","5");
+        if(modeResize!=0) {
             x3Last =getX();
             y3Last =getY();
             y4lastHeight = height/2;
             x4lastWidth = width/2;
             return true;
-        }Log.i("test touch","6");
+        }
         return false;
     }
 
@@ -229,27 +270,27 @@ public abstract class ModeButton extends View implements Serializable {
         }
         //Layout play edit resize
         else{
-            if(modeResize==MODE_RESIZE_BOTTOM_RIGHT){Log.i("test touch","br");
+            if(modeResize==MODE_RESIZE_BOTTOM_RIGHT){
                 deltaY=y- y2RawView + y1TouchSave;deltaX=x- x2RawView + x1TouchSave;//khoảng cách góc view con trỏ tới tâm
                 newHeight=(deltaY+ y4lastHeight);
                 newWidth=(deltaX+ x4lastWidth);
                 deltaX=0;deltaY=0;
             }
-            else if(modeResize==MODE_RESIZE_BOTTOM_LEFT){Log.i("test touch","bl");
+            else if(modeResize==MODE_RESIZE_BOTTOM_LEFT){
                 deltaY=y- y2RawView + y1TouchSave;deltaX= x2RawView -x+ x1TouchSave;//khoảng cách góc view con trỏ tới tâm
                 newHeight=(deltaY+ y4lastHeight);
                 newWidth=(deltaX+ x4lastWidth);
                 deltaX=-deltaX+ x4lastWidth;
                 deltaY=0;
             }
-            else if(modeResize==MODE_RESIZE_TOP_LEFT){Log.i("test touch","tl");
+            else if(modeResize==MODE_RESIZE_TOP_LEFT){
                 deltaY= y2RawView -y+ y1TouchSave;deltaX= x2RawView -x+ x1TouchSave;//khoảng cách góc view con trỏ tới tâm
                 newHeight=(deltaY+ y4lastHeight);
                 newWidth=(deltaX+ x4lastWidth);
                 deltaX=-deltaX+ x4lastWidth;
                 deltaY=-deltaY+ y4lastHeight;
             }
-            else if(modeResize==MODE_RESIZE_TOP_RIGHT){Log.i("test touch","tr");
+            else if(modeResize==MODE_RESIZE_TOP_RIGHT){
                 deltaY= y2RawView -y+ y1TouchSave;deltaX=x- x2RawView + x1TouchSave;//khoảng cách góc view con trỏ tới tâm
                 newHeight=(deltaY+ y4lastHeight);
                 newWidth=(deltaX+ x4lastWidth);

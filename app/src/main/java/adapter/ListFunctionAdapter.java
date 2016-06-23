@@ -36,7 +36,7 @@ public class ListFunctionAdapter extends ArrayAdapter<FunctionItem> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         if(convertView==null) {
-            convertView = new FunctionListView(context, new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (parent.getWidth()) / 6 +5));
+            convertView = new FunctionListView(context,parent.getWidth());
             FunctionItem item = listFunction.get(position);
             ((FunctionListView) convertView).icon.setImageResource(item.getIcon());
             item.setPanelKey(((FunctionListView) convertView).popupKey);

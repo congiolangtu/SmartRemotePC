@@ -3,7 +3,6 @@ package com.example.windy.smartremotepc;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -27,6 +26,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import Mode.DimenPer;
 import Mode.FunctionItem;
 import Mode.ModeButton;
 import adapter.ListFunctionAdapter;
@@ -47,15 +47,17 @@ public class EditButtonActivity extends Activity{
     View pickColor=null;
     View viewPickColor;
     ImageButton iconIsPick;
-    ModeButton buttonChange=null;
     MyButton myButton;
+    int widthPad=480,heightPad=800;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_button);
         findViewAll();
-        Log.i("test screen", Configuration.SCREEN_WIDTH_DP_UNDEFINED+"");
+        widthPad=getIntent().getIntExtra("width",widthPad);
+        heightPad=getIntent().getIntExtra("height",heightPad);
         final ArrayList<FunctionItem> arrayItem= new ArrayList<>();
         arrayItem.add(new FunctionItem(R.drawable.menu0));
         arrayItem.add(new FunctionItem(R.drawable.menu1));
@@ -68,6 +70,9 @@ public class EditButtonActivity extends Activity{
                 listFunction.setAdapter(new ListFunctionAdapter(EditButtonActivity.this,R.layout.choose_function_button,arrayItem));
             }
         });
+        listFunction.setDividerHeight(DimenPer.getToHeight(0.02f)-10);
+        int padding=DimenPer.getToHeight(0.01f);
+        ((LinearLayout.LayoutParams)listFunction.getLayoutParams()).setMargins(padding,padding,padding,padding);
         icon1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,8 +81,8 @@ public class EditButtonActivity extends Activity{
                 int[] location2={0,0};
                 icon1.getLocationInWindow(location1);
                 pickColor.getLocationInWindow(location2);
-                pickColor.setX(pickColor.getX()+location1[0]-location2[0]);
-                pickColor.setY(pickColor.getY()+location1[1]-location2[1]+icon1.getHeight());
+                pickColor.setX(pickColor.getX()+location1[0]-location2[0]-10);
+                pickColor.setY(pickColor.getY()+location1[1]-location2[1]+icon1.getHeight()-10);
                 viewPickColor.setVisibility(View.VISIBLE);
             }
         });
@@ -89,36 +94,35 @@ public class EditButtonActivity extends Activity{
                 int[] location2={0,0};
                 icon2.getLocationInWindow(location1);
                 pickColor.getLocationInWindow(location2);
-                pickColor.setX(pickColor.getX()+location1[0]-location2[0]);
-                pickColor.setY(pickColor.getY()+location1[1]-location2[1]+icon2.getHeight());
+                pickColor.setX(pickColor.getX()+location1[0]-location2[0]-10);
+                pickColor.setY(pickColor.getY()+location1[1]-location2[1]+icon2.getHeight()-10);
                 viewPickColor.setVisibility(View.VISIBLE);
             }
         });
         touchView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.i("test touch",event.getX()+" - "+event.getY());
                 return true;
             }
         });
         zoomOut.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.i("test touch",event.getX()+" - "+event.getY());
                 return false;
             }
         });
         myButton=new MyButton(this);
+        myButton.setLayoutParams(new FrameLayout.LayoutParams(myButton.getWidthButton(),myButton.getHeightButton(), Gravity.CENTER));
         myButton.setMode(ModeButton.MODE_VIEW_RESIZE_CREATE);
-        myButton.setHeight(100);myButton.setWidth(200);
-        viewItem.addView(myButton,new FrameLayout.LayoutParams(myButton.getWidthButton(),myButton.getHeightButton(), Gravity.CENTER));
+        myButton.setPad(widthPad,heightPad);
+        myButton.setPerHeight(0.2f);myButton.setPerWidth(0.2f);
+        viewItem.addView(myButton);
         myButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return myButton.touchListen(event);
             }
         });
-        buttonChange=myButton;
         editName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -129,6 +133,7 @@ public class EditButtonActivity extends Activity{
 
 
     void findViewAll(){
+        float sizeText=15;int sizeHeightBt=30;
         rootView = (LinearLayout) findViewById(R.id.layoutRootEB);
         viewItem = (FrameLayout) findViewById(R.id.viewItemEB);
         backType = (ImageButton) findViewById(R.id.backTypeEB);
@@ -154,41 +159,46 @@ public class EditButtonActivity extends Activity{
             }
             @Override
             public void afterTextChanged(Editable s) {
-                buttonChange.setName(s+"");
-                buttonChange.invalidate();
+                myButton.setName(s+"");
+                myButton.invalidate();
             }
         });
-        icon1.post(new Runnable() {
-            @Override
-            public void run() {
-                int height = editName.getHeight()+20;
-                icon1.getLayoutParams().height = height;
-                icon1.getLayoutParams().width=height;
-                icon2.getLayoutParams().height = height;
-                icon2.getLayoutParams().width=height;
-            }
-        });
-        if(getResources().getConfiguration().orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE)
+        if(getResources().getConfiguration().orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE){
             rootView.setOrientation(LinearLayout.HORIZONTAL);
-        else
+            DimenPer.setStart(getWindowManager().getDefaultDisplay().getWidth()/2,getWindowManager().getDefaultDisplay().getHeight());
+        }
+        else {
             rootView.setOrientation(LinearLayout.VERTICAL);
+            DimenPer.setStart(getWindowManager().getDefaultDisplay().getWidth(),getWindowManager().getDefaultDisplay().getHeight()/2);
+        }
+
         AbsListView.LayoutParams params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
         LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         viewPickColor=vi.inflate(R.layout.pick_icon_color,null);
         EditButtonActivity.this.addContentView(viewPickColor, params);
+
+        //cài đặt viewPicColor
         pickColor =findViewById(R.id.viewPIC);
+        int onePer=DimenPer.getToWidth(0.015f);
+        onePer+=6;pickColor.setPadding(onePer,onePer,onePer,onePer);onePer-=6;
+        pickColor.getLayoutParams().width=onePer*17+12;
+        pickColor.getLayoutParams().height=onePer*27+12;
+        View nextChild=null;
         for(int i=0; i<3; i++) {
-            View nextChild=((ViewGroup) pickColor).getChildAt(i);
+            nextChild=((ViewGroup) pickColor).getChildAt(i);
             for (int j = 0; j < 3; j++) {
                 ((ViewGroup) nextChild).getChildAt(j).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             iconIsPick.setImageDrawable((ColorDrawable) ((ImageButton) v).getDrawable());
+                            viewPickColor.setVisibility(View.INVISIBLE);
                         }
                     });
             }
         }
-        ((ViewGroup) pickColor).getChildAt(3).setOnClickListener(new View.OnClickListener() {
+        nextChild=((ViewGroup) pickColor).getChildAt(3);
+        ((TextView)nextChild).setTextSize(onePer);
+        nextChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(EditButtonActivity.this, "get Image", Toast.LENGTH_SHORT).show();
@@ -217,6 +227,34 @@ public class EditButtonActivity extends Activity{
             }
         });
         viewPickColor.setVisibility(View.INVISIBLE);
+
+        //cài đặt lại kích thước text, button
+        sizeText=DimenPer.getToHeightF(0.04f);
+        editName.setTextSize(DimenPer.getToHeightF(0.032f));
+        check1.setTextSize(DimenPer.getToHeightF(0.03f));
+        btOk.setTextSize(sizeText);
+        btCancel.setTextSize(sizeText);
+//        sizeText=DimenPer.getToHeightF(0.02f);
+//        zoomOut.setTextSize(sizeText);
+//        touchView.setTextSize(sizeText);
+
+//        sizeHeightBt=DimenPer.getToHeight(0.1f);
+//        zoomOut.getLayoutParams().height=sizeHeightBt;
+//        zoomOut.getLayoutParams().width=sizeHeightBt;
+//        touchView.getLayoutParams().height=sizeHeightBt;
+//        touchView.getLayoutParams().width=sizeHeightBt;
+//        ((FrameLayout.LayoutParams)touchView.getLayoutParams()).setMargins(sizeHeightBt,0,0,0);
+        editName.getLayoutParams().height=DimenPer.getToHeight(0.1f);
+        sizeHeightBt=DimenPer.getToHeight(0.12f);
+        btOk.getLayoutParams().height=sizeHeightBt;
+        btCancel.getLayoutParams().height=sizeHeightBt;
+
+        sizeHeightBt = sizeHeightBt+DimenPer.getToHeight(0.01f);
+        icon1.getLayoutParams().height = sizeHeightBt;
+        icon1.getLayoutParams().width=sizeHeightBt;
+        icon2.getLayoutParams().height = sizeHeightBt;
+        icon2.getLayoutParams().width=sizeHeightBt;
+
         btOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

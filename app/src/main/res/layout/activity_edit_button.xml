@@ -24,7 +24,8 @@
             android:background="@drawable/bg_keyboard"
             android:padding="2dp"
             android:gravity="center"
-            android:alpha="0.8" />
+            android:alpha="0.8"
+            android:shadowColor="#fc5c5c5c" />
 
         <TextView
             android:layout_width="50dp"
@@ -37,7 +38,8 @@
             android:padding="2dp"
             android:gravity="center"
             android:layout_marginLeft="50dp"
-            android:alpha="0.8" />
+            android:alpha="0.8"
+            android:shadowColor="#fc5c5c5c" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,37 +86,41 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:padding="4dp">
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/icon1EB"
-                android:src="#ffffffff"
+                android:src="#ffffff"
                 android:padding="5dp"
                 android:background="#bbbbbb"
-                android:layout_marginRight="6px" />
+                android:layout_marginRight="6px"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/icon2EB"
                 android:src="#ffffffff"
-                android:backgroundTintMode="src_over"
                 android:padding="5dp"
                 android:background="#ffbbbbbb"
-                android:layout_marginRight="6px" />
+                android:layout_marginRight="6px"
+                android:scaleType="fitCenter" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editNameEB"
-                android:hint="Name"
+                android:hint="NAME"
                 android:layout_gravity="center"
                 android:background="@android:drawable/editbox_dropdown_light_frame"
                 android:imeOptions="actionDone"
-                android:backgroundTintMode="add"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
+                android:inputType="textCapCharacters" />
 
         </LinearLayout>
 
@@ -131,31 +137,9 @@
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:id="@+id/content_setup">
 
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="View bound"
-                    android:id="@+id/check1EB"
-                    android:checked="true"
-                    android:visibility="visible" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="View bound"
-                    android:id="@+id/check2EB"
-                    android:checked="true"
-                    android:visibility="invisible" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="View bound"
-                    android:id="@+id/check3EB"
-                    android:checked="true"
-                    android:visibility="invisible" />
             </LinearLayout>
 
             <LinearLayout
@@ -197,9 +181,7 @@
                 android:text="Cancel"
                 android:id="@+id/btCancelEB"
                 android:layout_weight="1"
-                style="@android:style/Widget.Button.Small"
-                android:textAlignment="center"
-                android:gravity="top|center" />
+                style="@android:style/Widget.Button.Small" />
         </LinearLayout>
 
     </LinearLayout>

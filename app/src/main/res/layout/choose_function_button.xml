@@ -22,7 +22,8 @@
         android:weightSum="5"
         android:layout_weight="5"
         android:id="@+id/popupKeyCFB"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:baselineAligned="false">
 
         <TextView
             android:layout_width="0dp"

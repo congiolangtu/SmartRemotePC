@@ -16,8 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import Mode.CodeIntent;
-import adapter.MenuItemPager;
+import com.example.windy.smartremotepc.activity.BluetoothActivity;
+import com.example.windy.smartremotepc.activity.EditButtonActivity;
+import com.example.windy.smartremotepc.activity.KeyboardActivity;
+import com.example.windy.smartremotepc.activity.WifiConnectActivity;
+
+import com.example.windy.smartremotepc.mode.CodeIntent;
+import com.example.windy.smartremotepc.adapter.MenuItemPager;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {

@@ -119,7 +119,7 @@ public class MyService extends Service {
 
     public class LocalBinder extends Binder {
         // Trả về đối tượng MyService để cho client có thể gọi public method
-        MyService getService(){
+        public MyService getService(){
             Log.i("MyService","get Service");
             return MyService.this;
         }

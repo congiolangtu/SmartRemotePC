@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+<Keyboard xmlns:android="http://schemas.android.com/apk/res-auto"
     android:horizontalGap="0px"
     android:verticalGap="0px"
     android:keyHeight="8%p"
@@ -11,13 +11,13 @@
         <Key android:codes="122" android:keyLabel="F11"/>
         <Key android:codes="123" android:keyLabel="F12"/>
         <Key android:codes="45" android:keyLabel="Ins"/>
-        <Key android:codes="44" android:keyLabel="PrScr"/>
+        <Key android:codes="44" android:keyLabel="PrS"/>
         <Key android:codes="46" android:keyLabel="Del"/>
-        <Key android:codes="33" android:keyLabel="PgUp"/>
-        <Key android:codes="34" android:keyLabel="PgDn"/>
+        <Key android:codes="33" android:keyLabel="PgU"/>
+        <Key android:codes="34" android:keyLabel="PgD"/>
         <Key android:codes="36" android:keyLabel="Home"/>
         <Key android:codes="35" android:keyLabel="End"/>
-        <Key android:codes="144" android:keyLabel="NumLk" android:keyEdgeFlags="right"/>
+        <Key android:codes="144" android:keyLabel="NumL" android:keyEdgeFlags="right"/>
     </Row>
     <Row>
         <Key android:codes="164" android:keyLabel="Alt" android:isSticky="true" android:isModifier="true" android:keyWidth="12%p" android:keyEdgeFlags="left"/>
@@ -30,7 +30,7 @@
         <Key android:codes="103" android:keyLabel="7"/>
         <Key android:codes="104" android:keyLabel="8"/>
         <Key android:codes="105" android:keyLabel="9"/>
-        <Key android:codes="13" android:keyIcon="@drawable/back_space" android:iconPreview="@drawable/back_space_preview"
+        <Key android:codes="13" android:keyLabel="Back_"
             android:keyWidth="16%p" android:isRepeatable="true" android:keyEdgeFlags="right"/>
     </Row>
     <Row>
@@ -44,8 +44,8 @@
         <Key android:codes="100" android:keyLabel="4"/>
         <Key android:codes="101" android:keyLabel="5"/>
         <Key android:codes="102" android:keyLabel="6"/>
-        <Key android:codes="111" android:keyLabel="/"/>
-        <Key android:codes="106" android:keyLabel="*" android:keyEdgeFlags="right"/>
+        <Key android:codes="109" android:keyLabel="-"/>
+        <Key android:codes="111" android:keyLabel="/" android:keyEdgeFlags="right"/>
     </Row>
     <Row>
         <Key android:codes="160" android:keyLabel="Shift" android:isSticky="true" android:isModifier="true" android:keyWidth="12%p" android:keyEdgeFlags="left"/>
@@ -58,8 +58,8 @@
         <Key android:codes="97" android:keyLabel="1"/>
         <Key android:codes="98" android:keyLabel="2"/>
         <Key android:codes="99" android:keyLabel="3"/>
-        <Key android:codes="109" android:keyLabel="-"/>
-        <Key android:codes="107" android:keyLabel="+" android:keyEdgeFlags="right"/>
+        <Key android:codes="107" android:keyLabel="+"/>
+        <Key android:codes="106" android:keyLabel="*" android:keyEdgeFlags="right"/>
     </Row>
     <Row android:rowEdgeFlags="bottom">
         <Key android:codes="-1" android:keyLabel="Fn" android:keyWidth="12%p" android:keyEdgeFlags="left"/>

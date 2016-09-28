@@ -3,7 +3,8 @@
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/root_keyboard">
 
 
     <LinearLayout
@@ -29,14 +30,12 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <android.inputmethodservice.KeyboardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.example.windy.smartremotepc.item.MyKeyboardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:shadowColor="@android:color/black"
         android:layout_alignParentBottom="true"
-        android:keyPreviewLayout="@layout/key_preview"
-        android:keyBackground="@drawable/btn_keyboard"
-        android:background="#00ffffff" />
+        />
 
 </RelativeLayout>

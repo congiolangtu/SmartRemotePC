@@ -25,38 +25,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddItemActivity"
+            android:name=".activity.AddItemActivity"
             android:label="Add"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
-            android:name=".PickImageActivity"
+            android:name=".activity.PickImageActivity"
             android:label="Select one"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
-            android:name=".AbsoluteActivity"
+            android:name=".activity.AbsoluteActivity"
             android:label="Absolute"/>
         <activity
-            android:name=".WifiConnectActivity"
+            android:name=".activity.WifiConnectActivity"
             android:label="Server Information"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
         <activity
-        android:name=".RemotePCActivity"
+        android:name=".activity.RemotePCActivity"
         android:theme="@android:style/Theme.Holo.Light.NoActionBar"/>
         <activity
-            android:name=".EditButtonActivity"
+            android:name=".activity.EditButtonActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
-            android:name=".SlideShowActivity"
+            android:name=".activity.SlideShowActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"/>
         <activity
-            android:name=".KeyboardActivity"
+            android:name=".activity.KeyboardActivity"
             android:theme="@style/KeyBroadTheme"/>
-        <activity android:name=".BluetoothActivity"
+        <activity
+            android:name=".activity.KeyboardFunctionActivity"
+            android:theme="@style/KeyBroadTheme"/>
+        <activity android:name=".activity.BluetoothActivity"
             android:icon="@drawable/bluetooth"
             android:label="Bluetooth"
             android:theme="@android:style/Theme.Holo.Light.Dialog"/>
-        <service android:name=".MyService"/>
+        <service android:name=".MyService"/><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 
